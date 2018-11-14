@@ -1,0 +1,34 @@
+<script type="text/javascript">
+    const del = (id) => {
+        console.log(id) 
+    }
+</script>
+<h1>Locations</h1>
+<div>
+  <div class="table-header">
+    <div>ID</div>
+    <div>Country</div>
+    <div>City</div>
+  </div>
+  <div>
+    {{#each data}}
+      <div class="table-row">
+        <div>{{this.id}}</div>
+        <div>{{this.country}}</div>
+        <div>{{this.city}}</div>
+        <div>
+            <form method="POST" action="/locations/delete">
+                <input type="submit" value="Delete" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+        <div>
+            <form method="GET" action="/locations/update">
+                <input type="submit" value="Update" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+      </div>
+    {{/each}}
+  </div> 
+</div>

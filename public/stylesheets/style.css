@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+.table-header >div {
+  width: 10%;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.table-row > div {
+    width:10%;
+  display:inline-block;
+  font-size:20px;
+}
