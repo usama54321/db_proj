@@ -14,13 +14,13 @@
         <div>{{this.city}}</div>
         <div>{{this.country}}</div>
         <div>
-            <form method="post" action="/locations/delete">
+            <form method="post" action="/airports/delete">
                 <input type="submit" value="delete" />
                 <input type="hidden" name="id" value="{{this.id}}" />
             </form>
         </div>
         <div>
-            <form method="get" action="/locations/update">
+            <form method="get" action="/airports/update">
                 <input type="submit" value="update" />
                 <input type="hidden" name="id" value="{{this.id}}" />
             </form>

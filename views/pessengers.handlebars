@@ -1,0 +1,41 @@
+<h1>Employees</h1>
+<div>
+  <div class="table-header">
+    <div>ID</div>
+    <div>Discount</div>
+    <div>First Name</div>
+    <div>Last Name</div>
+    <div>Age</div>
+    <div>CNIC</div>
+    <div>Phone Number</div>
+    <div>Miles</div>
+    <div>Passport Number</div>
+  </div>
+  <div>
+    {{#each data}}
+      <div class="table-row">
+        <div>{{this.id}}</div>
+        <div>{{this.discount}}</div>
+        <div>{{this.first_name}}</div>
+        <div>{{this.last_name}}</div>
+        <div>{{this.age}}</div>
+        <div>{{this.cnic}}</div>
+        <div>{{this.phone_number}}</div>
+        <div>{{this.miles}}</div>
+        <div>{{this.passport_number}}</div>
+        <div>
+            <form method="post" action="/persons/delete">
+                <input type="submit" value="delete" />
+                <input type="hidden" name="cnic" value="{{this.cnic}}" />
+            </form>
+        </div>
+        <div>
+            <form method="get" action="/persons/update">
+                <input type="submit" value="update" />
+                <input type="hidden" name="cnic" value="{{this.cnic}}" />
+            </form>
+        </div>
+      </div>
+    {{/each}}
+  </div> 
+</div>

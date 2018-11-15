@@ -11,6 +11,8 @@ var users = require('./routes/users');
 var flights = require('./routes/flights');
 var locations = require('./routes/locations');
 var airports = require('./routes/airport')
+var persons = require('./routes/persons')
+var pessengers = require('./routes/pessengers')
 
 var app = express();
 var hbs = exphbs.create({
@@ -35,7 +37,8 @@ app.use('/users', users);
 app.use('/flights', flights)
 app.use('/locations', locations)
 app.use('/airports', airports)
-
+app.use('/persons', persons)
+app.use('/pessengers', pessengers)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
