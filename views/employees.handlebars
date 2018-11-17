@@ -11,22 +11,18 @@
     {{#each data}}
       <div class="table-row">
         <div>{{this.id}}</div>
-        <div>{{this.discount}}</div>
-        <div>{{this.first_name}}</div>
-        <div>{{this.last_name}}</div>
-        <div>{{this.age}}</div>
+        <div>{{this.joining_year}}</div>
+        <div>{{this.dept_no}}</div>
+        <div>{{this.grade}}</div>
         <div>{{this.cnic}}</div>
-        <div>{{this.phone_number}}</div>
-        <div>{{this.miles}}</div>
-        <div>{{this.passport_number}}</div>
         <div>
-            <form method="post" action="/pessengers/delete">
+            <form method="post" action="/employees/delete">
                 <input type="submit" value="delete" />
                 <input type="hidden" name="id" value="{{this.id}}" />
             </form>
         </div>
         <div>
-            <form method="get" action="/pessengers/update">
+            <form method="get" action="/employees/update">
                 <input type="submit" value="update" />
                 <input type="hidden" name="id" value="{{this.id}}" />
             </form>

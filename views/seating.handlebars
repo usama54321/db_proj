@@ -1,0 +1,32 @@
+<h1>Seating</h1>
+<div>
+  <div class="table-header">
+    <div>ID</div>
+    <div>Airplane ID</div>
+    <div>Seating Type ID</div>
+    <div>Number of Seats</div>
+
+  </div>
+  <div>
+    {{#each data}}
+      <div class="table-row">
+        <div>{{this.id}}</div>
+        <div>{{this.airplane_id}}</div>
+        <div>{{this.seating_type_id}}</div>
+        <div>{{this.number_of_seats}}</div>
+        <div>
+            <form method="POST" action="/seating/delete">
+                <input type="submit" value="Delete" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+        <div>
+            <form method="GET" action="/seating/update">
+                <input type="submit" value="Update" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+      </div>
+    {{/each}}
+  </div> 
+</div>

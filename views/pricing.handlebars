@@ -1,29 +1,33 @@
-<h1>Airports</h1>
+<h1>Pricing</h1>
 <div>
   <div class="table-header">
     <div>id</div>
-    <div>Airport Name</div>
-    <div>Location ID</div>
+    <div>Flight</div>
+    <div>Seat Type</div>
+    <div>Cost</div>
+    <div>Baggage</div>
   </div>
   <div>
     {{#each data}}
       <div class="table-row">
         <div>{{this.id}}</div>
-        <div>{{this.name}}</div>
-        <div>{{this.location_id}}</div>
+        <div>{{this.flight_id}}</div>
+        <div>{{this.seating_type_id}}</div>
+        <div>{{this.cost}}</div>
+        <div>{{this.baggage_limit}}</div>
         <div>
-            <form method="post" action="/airports/delete">
+            <form method="post" action="/pricing/delete">
                 <input type="submit" value="delete" />
                 <input type="hidden" name="id" value="{{this.id}}" />
             </form>
         </div>
         <div>
-            <form method="get" action="/airports/update">
+            <form method="get" action="/pricing/update">
                 <input type="submit" value="update" />
                 <input type="hidden" name="id" value="{{this.id}}" />
             </form>
         </div>
       </div>
     {{/each}}
-  </div> 
+  </div>
 </div>

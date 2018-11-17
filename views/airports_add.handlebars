@@ -2,24 +2,14 @@
 <div>
   <form method="POST">
     <div>
-      <input type="text" name="airport" />
-      <label>Country</label>
-      <select name="country">
-        {{#each countries}}
-          <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
-      </select>
+        <input type="text" name="name" />
+        <label>Name</label>
     </div>
-
     <div>
-      <label>City</label>
-      <select name="city">
-        {{#each cities}}
-          <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
-      </select>
+        <input type="number" name="location_id" />
+        <label>Location ID</label>
     </div>
-
+    
     <input type="submit" />
   </form>
 </div>

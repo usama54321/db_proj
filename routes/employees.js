@@ -4,27 +4,29 @@ const connection = require('../db');
 
 /* GET home page. */
 const getEmployees = (id, cb) => {
-    let query = "SELECT person.age, person.first_name, person.last_name, person.cnic, person.phone_number, person.miles, person.passport_number, person.address_id, employee.id, employee.joining_year employee.dept_no, employee.grade, employee.cnic FROM `employee` INNER JOIN employee ON person.cnic = employee.cnic"
+    let query = "SELECT employee.id, employee.joining_year, employee.dept_no, employee.grade, employee.cnic FROM `employee` "
 
     if(id)
         query += " WHERE employee.id = " + id.toString()
+    console.log(query)
     connection.query(query, cb)
 }
 
 
 router.get('/', function(req, res, next) {
     getEmployees(null, (err, results, fields) => {
+        console.log(results)
         res.render("employees", {data: results})
     })
 });
 
 router.get('/add', (req, res, next) => {
-    res.render("persons_add", {})
+    res.render("employees_add", {})
 });
 
 
 router.post('/add', (req, res, next) => { 
-    connection.query("INSERT INTO person (cnic, age, first_name, last_name, phone_number, miles, passport_number, address_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [req.body.cnic, req.body.age, req.body.first_name, req.body.last_name, req.body.phone_number, req.body.miles, req.body.passport_number, req.body.address_id], (err, results, fields) => {
+    connection.query("INSERT INTO employee (cnic, joining_year, dept_no, grade) VALUES (?, ?, ?, ?)", [req.body.cnic, req.body.joining_year, req.body.dept_no, req.body.grade], (err, results, fields) => {
         if(!err)
             err = "Added succesfully"
         res.render("error", {errors: err})
@@ -33,12 +35,12 @@ router.post('/add', (req, res, next) => {
 
 
 router.post('/delete', (req, res, next) => {
-    if(!req.body || !req.body.cnic) {
+    if(!req.body || !req.body.id) {
         res.render("error", {errors: "No id provided"})
         return;
     }
 
-    connection.query("DELETE FROM person WHERE cnic = ?", [req.body.cnic], (err, results, fields) => {
+    connection.query("DELETE FROM employee WHERE id = ?", [req.body.id], (err, results, fields) => {
         if(!err)
             err = "Deleted successfully"
         res.render("error", {errors: err})
@@ -46,20 +48,21 @@ router.post('/delete', (req, res, next) => {
 })
 
 router.get('/update', (req, res, next) => {
-    if(!req.query.cnic) {
+    if(!req.query.id) {
         res.render("error", {errors: "cnic is required"})
         return;
     }
 
-    getPersons(req.query.cnic, (err, data, fields) => {
+    getEmployees(req.query.id , (err, data, fields) => {
         if(err || !data || !data.length) {
             if(!err)
-                err = "Person not found"
+                err = "Employee not found"
             res.render("error", {errors: err})
             return
         }
 
-        res.render("persons_update", {data: data[0]})
+        console.log(data)
+        res.render("employees_update", {data: data[0], id: req.query.id})
     })
 
 
@@ -67,7 +70,7 @@ router.get('/update', (req, res, next) => {
 })
 
 router.post('/update', (req, res, next) => {
-    connection.query("UPDATE person SET first_name=?, last_name=?, age=?, cnic=?, phone_number=?, miles=?, passport_number=?, address_id=? WHERE cnic = ?", [req.body.first_name, req.body.last_name, req.body.age, req.body.cnic, req.body.phone_number, req.body.miles, req.body.passport_number, req.body.address_id, req.body.old_cnic], (err, fields, data) => {
+    connection.query("UPDATE employee SET id =?, joining_year=?, dept_no=?, cnic=?, grade=? WHERE id= ?", [req.body.id, req.body.joining_year, req.body.dept_no, req.body.cnic, req.body.grade, req.body.old_id], (err, fields, data) => {
         if(!err)
             err = "Updated successfully"
         res.render("error", {errors: err})

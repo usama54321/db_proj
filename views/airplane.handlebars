@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    const del = (id) => {
+        console.log(id) 
+    }
+</script>
+<h1>Airplanes</h1>
+<div>
+  <div class="table-header">
+    <div>ID</div>
+    <div>Airplane Type</div>
+    <div>Manufacture Year</div>
+    <div>License Number</div>
+  </div>
+  <div>
+    {{#each data}}
+      <div class="table-row">
+        <div>{{this.id}}</div>
+        <div>{{this.name}}</div>
+        <div>{{this.manufacture_year}}</div>
+        <div>{{this.license_no}}</div>
+        <div>
+            <form method="POST" action="/airplane/delete">
+                <input type="submit" value="Delete" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+        <div>
+            <form method="GET" action="/airplane/update">
+                <input type="submit" value="Update" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+      </div>
+    {{/each}}
+  </div> 
+</div>

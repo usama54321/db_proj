@@ -1,0 +1,21 @@
+<h1>Update Airport</h1>
+<div>
+  <form method="POST">
+    <div>
+      <input type="number" name="id" value={{data.id}} />
+      <label>ID</label>
+    </div>
+
+    <div>
+        <input type="text" name="name" value={{data.name}} />
+        <label>Airport</label>
+    </div>
+    <div>
+        <input type="number" name="location_id" value={{data.location_id}} />
+        <label>Location ID </label>
+    </div>
+
+    <input type="hidden" name="old_id" value={{id}} /> 
+    <input type="submit" />
+  </form>
+</div>

@@ -4,7 +4,7 @@ const connection = require('../db');
 
 /* GET home page. */
 const getAirports = (id, cb) => {
-    let query = "SELECT airport.id, airport.name, city.name AS city, country.name AS country FROM `airport` INNER JOIN location ON location.id = airport.location_id INNER JOIN `city` ON city.id = location.city INNER JOIN country ON country.id = location.country"
+    let query = "SELECT airport.id, airport.name, airport.location_id, city.name AS city, country.name AS country FROM `airport` INNER JOIN location ON location.id = airport.location_id INNER JOIN `city` ON city.id = location.city INNER JOIN country ON country.id = location.country"
 
     if(id)
         query += " WHERE airport.id = " + id.toString()
@@ -30,13 +30,11 @@ router.get('/add', (req, res, next) => {
 });
 
 router.post('/add', (req, res, next) => {
-  connection.query("INSERT INTO location (country, city) VALUES (?, ?)", [req.body.city, req.body.country], (err, results, fields) => {
-    connection.query("INSERT INTO airport (id, name, location_id) VALUES (?,?,?)", [req.body.id, req.body.country, req.body.city], (err, results, fields) => {
+    connection.query("INSERT INTO airport (name, location_id) VALUES (?,?)", [req.body.name, req.body.location_id], (err, results, fields) => {
       if(!err)
         err = "Added succesfully"
       res.render("error", {errors: err})
     })
-  })
   
 })
 
@@ -47,7 +45,7 @@ router.post('/delete', (req, res, next) => {
         return;
     }
 
-    connection.query("DELETE FROM location WHERE id = ?", [req.body.id], (err, results, fields) => {
+    connection.query("DELETE FROM airport WHERE id = ?", [req.body.id], (err, results, fields) => {
         if(!err)
             err = "Deleted successfully"
         res.render("error", {errors: err})
@@ -59,20 +57,15 @@ router.get('/update', (req, res, next) => {
         res.render("error", {errors: "id is required"})
         return;
     }
-    connection.query("SELECT * FROM city WHERE 1", (err, cities, fields) => {
-        connection.query("SELECT * FROM country WHERE 1", (err, countries, fields) => {
-            getAirports(req.query.id, (err, results, fields) => {
-                res.render("locations_update", {cities: cities, countries: countries, id: req.query.id});
-            })
-            //res.render("locations_add", {cities: cities, countries: countries, errors: err})
-        })
+    getAirports(req.query.id, (err, results, fields) => {
+        console.log(results)
+        res.render("airports_update", {id: req.query.id, data: results[0]});
     })
-    //connection.query("SELECT *
 })
 
 router.post('/update', (req, res, next) => {
     console.log(req.body)
-    connection.query("UPDATE location SET country=?, city=? WHERE id = ?", [req.body.country, req.body.city, req.body.id], (err, fields, data) => {
+    connection.query("UPDATE airport SET id=?, name=?, location_id=? WHERE id = ?", [req.body.id, req.body.name, req.body.location_id, req.body.old_id], (err, fields, data) => {
         if(!err)
             err = "Updated successfully"
         res.render("error", {errors: err})

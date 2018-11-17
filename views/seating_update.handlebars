@@ -1,0 +1,30 @@
+<h1>Update Seating</h1>
+<div>
+  <form method="POST">
+    <div>
+      <div>
+          <label>Airplane ID</label>
+          <input type="text" name="airplane_id" value={{data.airplane_id}} />
+      </div>
+
+      <div>
+          <label>Seating Type</label>
+          <input type="text" name="seating_type_id" value={{data.seating_type_id}} />
+      </div>
+
+      <div>
+          <label>Number of Seats</label>
+          <input type="number" name="number_of_seats" value={{data.number_of_seats}} />
+      </div>
+
+      <div>
+          <label>ID</label>
+          <input type="text" name="id" value={{data.id}} />
+      </div>
+     
+        <input type="hidden" value={{data.id}} name="old_id" />
+    </div>
+
+    <input type="submit" />
+  </form>
+</div>

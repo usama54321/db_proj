@@ -1,0 +1,28 @@
+<h1>Employees Update</h1>
+<div>
+    <form method="POST" >
+    <div>
+        <input type="number" value={{data.id}} name="id" />
+        <label> ID </label>
+    </div>
+    <div>
+        <input type="number" name="joining_year" value={{data.joining_year}} />
+        <label> Joining Year </label>
+    </div> 
+    <div>
+        <input type="number" name="dept_no" value={{data.dept_no}} />
+        <label> Department No. </label>
+    </div>
+    <div>
+        <input type="number" name="grade" value={{data.grade}} />
+        <label>Grade</label>
+    </div>
+    <div>
+        <input type="text" name="cnic" value={{data.cnic}} />
+        <label> CNIC </label>
+    </div>
+
+    <input type="hidden" name="old_id" value={{id}} />
+    <input type="submit" />
+    </form>
+</div>

@@ -1,0 +1,32 @@
+
+<h1>Ticketing</h1>
+<div>
+  <div class="table-header">
+    <div>Booking ID</div>
+    <div>Pricing ID</div>
+    <div>Passenger ID</div>
+
+  </div>
+  <div>
+    {{#each data}}
+      <div class="table-row">
+        <div>{{this.booking_id}}</div>
+        <div>{{this.pricing_id}}</div>
+        <div>{{this.passenger_id}}</div>
+
+        <div>
+            <form method="POST" action="/ticketing/delete">
+                <input type="submit" value="Delete" />
+                <input type="hidden" name="booking_id" value="{{this.booking_id}}" />
+            </form>
+        </div>
+        <div>
+            <form method="GET" action="/ticketing/update">
+                <input type="submit" value="Update" />
+                <input type="hidden" name="booking_id" value="{{this.booking_id}}" />
+            </form>
+        </div>
+      </div>
+    {{/each}}
+  </div> 
+</div>
