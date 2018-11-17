@@ -1,0 +1,34 @@
+<h1>Update Person</h1>
+<div>
+  <form method="POST">
+    <div>
+      <div>
+          <label>id</label>
+          <input type="text" name="id" value={{data.id}} />
+      </div>
+
+      <div>
+          <label>city</label>
+          <input type="text" name="city" value={{data.city}} />
+      </div>
+
+      <div>
+          <label>postal_code</label>
+          <input type="number" name="postal_code" value={{data.postal_code}} />
+      </div>
+
+      <div>
+          <label>country</label>
+          <input type="text" name="country" value={{data.country}} />
+      </div>
+      <div>
+          <label>street</label>
+          <input type="text" name="street" value={{data.street}} />
+      </div> 
+     
+        <input type="hidden" value={{data.id}} name="old_id" />
+    </div>
+
+    <input type="submit" />
+  </form>
+</div>

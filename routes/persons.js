@@ -47,11 +47,14 @@ router.post('/delete', (req, res, next) => {
 })
 
 router.get('/update', (req, res, next) => {
+
+
     if(!req.query.cnic) {
         res.render("error", {errors: "cnic is required"})
         return;
     }
-
+    console.log("update working")
+    console.log(req.query.cnic)
     getPersons(req.query.cnic, (err, data, fields) => {
         if(err || !data || !data.length) {
             if(!err)
@@ -68,7 +71,10 @@ router.get('/update', (req, res, next) => {
 })
 
 router.post('/update', (req, res, next) => {
+     console.log("update called  post wala ")
     connection.query("UPDATE person SET first_name=?, last_name=?, age=?, cnic=?, phone_number=?, miles=?, passport_number=?, address_id=? WHERE cnic = ?", [req.body.first_name, req.body.last_name, req.body.age, req.body.cnic, req.body.phone_number, req.body.miles, req.body.passport_number, req.body.address_id, req.body.old_cnic], (err, fields, data) => {
+    console.log(fields)
+    console.log("see above")
         if(!err)
             err = "Updated successfully"
         res.render("error", {errors: err})

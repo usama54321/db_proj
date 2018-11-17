@@ -1,0 +1,22 @@
+<h1>Update Person</h1>
+<div>
+  <form method="POST">
+    <div>
+      <div>
+          <label>license_no</label>
+          <input type="text" name="license_no" value={{data.license_no}} />
+      </div>
+
+      <div>
+          <label>name</label>
+          <input type="text" name="name" value={{data.name}} />
+      </div>
+
+  
+     
+        <input type="hidden" value={{data.license_no}} name="old_license_no" />
+    </div>
+
+    <input type="submit" />
+  </form>
+</div>

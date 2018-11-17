@@ -15,6 +15,7 @@ const getAirports = (id, cb) => {
 router.get('/', function(req, res, next) {
     getAirports(null, (err, results, fields) => {
         console.log(results)
+        console.log(err)
         res.render("airports", {data: results})
     })
 });

@@ -1,0 +1,36 @@
+<h1>Flights</h1>
+<div>
+  <div class="table-header">
+  
+    <div>licence_no</div>
+    <div>name</div>
+   
+  </div>
+  <div>
+     {{#each data}}
+      <div class="table-row">
+        <div>{{this.license_no}}</div>
+        <div>{{this.name}}</div>
+      
+        <div>
+            <form method="POST" action="/manufacturer_names/delete">
+                <input type="submit" value="Delete" />
+                <input type="hidden" name="license_no" value="{{this.license_no}}" />
+            </form>            
+        </div>
+
+        <div>
+            <form method="GET" action="/manufacturer_names/update">
+                <input type="submit" value="Update" />
+                <input type="hidden" name="license_no" value="{{this.license_no}}" />
+            </form>
+        </div>
+
+         
+         
+
+         
+      </div>
+    {{/each}}
+  </div> 
+</div>

@@ -14,6 +14,7 @@ const getLocation = (id, cb) => {
 
 router.get('/', function(req, res, next) {
     getLocation(null, (err, results, fields) => {
+        console.log(results)
         res.render("locations", {data: results})
     })
 });
