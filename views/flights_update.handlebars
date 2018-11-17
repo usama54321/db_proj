@@ -1,0 +1,45 @@
+<h1>Add Person</h1>
+<div>
+  <form method="POST">
+    <div>
+
+    <div>
+          <label>flight_no</label>
+          <input type="text" name="flight_no" value={{data.flight_no}} />
+      </div>
+
+      <div>
+          <label>arrival_airport</label>
+          <input type="text" name="arrival_airport" value={{data.arrival_airport}} />
+      </div>
+
+
+      <div>
+          <label>dept_airport</label>
+          <input type="text" name="dept_airport" value={{data.dept_airport}} />
+      </div>
+
+      <div>
+          <label>airplane_id</label>
+          <input type="text" name="airplane_id" value={{data.airplane_id}} />
+      </div>
+
+       <div>
+          <label>dept_time</label>
+          <input type="date" name="dept_time" value={{data.dept_time}} />
+      </div>
+
+     
+
+
+     
+
+      <div>
+          <input type="hidden" name="old_flight_no" value={{data.flight_no}}  />
+      </div>
+    
+    </div>
+
+    <input type="submit" />
+  </form>
+</div>

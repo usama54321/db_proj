@@ -1,0 +1,41 @@
+<h1>Flights</h1>
+<div>
+  <div class="table-header">
+  
+    <div>flight no</div>
+    <div>arrival airport name</div>
+    <div>departure airport name</div>
+    <div>departure time</div>
+    <div>airplane id</div>
+     
+  </div>
+  <div>
+     {{#each data}}
+      <div class="table-row">
+        <div>{{this.flight_no}}</div>
+        <div>{{this.name1}}</div>
+        <div>{{this.name2}}</div>
+        <div>{{this.dept_time}}</div>
+        <div>{{this.airplane_id}}</div>
+        <div>
+            <form method="POST" action="/flights/delete">
+                <input type="submit" value="Delete" />
+                <input type="hidden" name="id" value="{{this.flight_no}}" />
+            </form>            
+        </div>
+
+        <div>
+            <form method="GET" action="/flights/update">
+                <input type="submit" value="Update" />
+                <input type="hidden" name="flight_no" value="{{this.flight_no}}" />
+            </form>
+        </div>
+
+         
+         
+
+         
+      </div>
+    {{/each}}
+  </div> 
+</div>

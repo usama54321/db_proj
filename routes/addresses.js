@@ -4,7 +4,7 @@ const connection = require('../db');
 
 /* GET home page. */
 const getFlights = (id, cb) => {
-    let query = "SELECT flight.flight_no, airport1.name AS name1, airport2.name AS name2, flight.dept_time, flight.airplane_id FROM `flight` INNER JOIN airport airport1 ON flight.arrival_airport = airport1.id INNER JOIN airport airport2 ON flight.dept_airport = airport2.id "
+    let query = "SELECT address.id, address.city, address.postal_code, address.country, address.street FROM `address`"
 
     if(id)
         query += " WHERE airport.id = " + id.toString()
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
         console.log(results)
         console.log("errors below")
         console.log(err)
-        res.render("flights", {data: results})
+        res.render("addresses", {data: results})
     })
 });
 
@@ -32,7 +32,7 @@ router.post('/delete', (req, res, next) => {
         return;
     }
 
-    connection.query("DELETE FROM flight WHERE flight_no = ?", [req.body.id], (err, results, fields) => {
+    connection.query("DELETE FROM address WHERE id = ?", [req.body.id], (err, results, fields) => {
         if(!err)
             err = "Deleted successfully"
         res.render("error", {errors: err})
@@ -43,7 +43,7 @@ router.post('/delete', (req, res, next) => {
 router.get('/add', (req, res, next) => {
 
     console.log("I was here 3")
-	res.render("flights_add")
+	res.render("addresses_add")
 
  
 });
@@ -51,36 +51,45 @@ router.get('/add', (req, res, next) => {
 router.post('/add', (req, res, next) => {
         console.log("POST came")
         console.log(req.body)
-        connection.query("INSERT INTO flight (flight_no, arrival_airport, dept_airport, airplane_id, dept_time) VALUES (?, ?, ?, ?, ?)", [req.body.flight_no, req.body.arrival_airport, req.body.dept_airport, req.body.airplane_id, req.body.dept_time], (err, results, fields) => {
+        connection.query("INSERT INTO address (id, city, postal_code, country, street) VALUES (?, ?, ?, ?, ?)", [req.body.id, req.body.city, req.body.postal_code, req.body.country, req.body.street], (err, results, fields) => {
         if(!err)
             err = "Added succesfully"
         res.render("error", {errors: err})
    })
 })
 
-
+ 
 
 router.get('/update', (req, res, next) => {
    
     // i dont know why key is id instead of flight_no
-    if(!req.query.flight_no) {
+
+    console.log("update called")
+    console.log(req.query.id)
+    if(!req.query.id) {
         res.render("error", {errors: "flight_no is required"})
         return;
     }
-    let query = "SELECT  flight.flight_no, flight.arrival_airport, flight.dept_airport, flight.airplane_id, flight.dept_time FROM `flight`"
-    query += " WHERE flight.flight_no = " + req.query.flight_no.toString()
+
+    console.log("reach here")
+
+
+    let query = "SELECT  address.id, address.city, address.postal_code, address.country, address.street FROM `address`"
+    query += " WHERE address.id = " + req.query.id.toString()
     connection.query(query,(err, data, fields)=>{
         if(err || !data || !data.length) {
             if(!err)
-                err = "flight not found"
+                err = "Person not found"
             res.render("error", {errors: err})
             return
         }
 
+
+
         console.log(data)
         console.log(data[0])
         console.log({data: data[0]})
-        res.render("flights_update", {data: data[0]})
+        res.render("addresses_update", {data: data[0]})
 
 
     })
@@ -92,7 +101,7 @@ router.get('/update', (req, res, next) => {
 router.post('/update', (req, res, next) => {
      console.log("update called  post wala ")
      console.log(req.body)
-    connection.query("UPDATE flight SET flight_no=?, arrival_airport=?, dept_airport=?, airplane_id=?, dept_time=? WHERE flight_no = ?", [req.body.flight_no, req.body.arrival_airport, req.body.dept_airport, req.body.airplane_id, req.body.dept_time, req.body.old_flight_no], (err, fields, data) => {
+    connection.query("UPDATE address SET id=?, city=?, postal_code=?, country=?, street=? WHERE id = ?", [req.body.id, req.body.city, req.body.postal_code, req.body.country, req.body.street, req.body.old_id], (err, fields, data) => {
         console.log(fields)
     console.log("see above")
         if(!err)
