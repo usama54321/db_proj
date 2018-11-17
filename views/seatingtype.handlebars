@@ -1,0 +1,30 @@
+
+<h1>Seating Type</h1>
+<div>
+  <div class="table-header">
+    <div>ID</div>
+    <div>Type</div>
+  
+
+  </div>
+  <div>
+    {{#each data}}
+      <div class="table-row">
+        <div>{{this.id}}</div>
+        <div>{{this.name}}</div>
+        <div>
+            <form method="POST" action="/seatingtype/delete">
+                <input type="submit" value="Delete" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+        <div>
+            <form method="GET" action="/seatingtype/update">
+                <input type="submit" value="Update" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+      </div>
+    {{/each}}
+  </div> 
+</div>

@@ -1,0 +1,35 @@
+<h1>Update Pricing</h1>
+<div>
+  <form method="POST">
+
+    <div>
+      <label>Flight</label>
+      <select name="flight_id">
+        {{#each cities}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div>
+      <label>Seat Type</label>
+      <select name="seating_type_id">
+        {{#each countries}}
+          <option value="{{this.id }}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div>
+      <input type = "text" placeholder = "Price" name = "cost" />
+    </div>
+
+    <div>
+      <input type = "text" placeholder = "Baggage" name = "baggage" />
+    </div>
+
+
+    <input type="hidden" value={{id}} name="id" />
+    <input type="submit" />
+  </form>
+</div>

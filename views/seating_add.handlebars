@@ -1,0 +1,34 @@
+<h1>Add Seating</h1>
+<div>
+  <form method="POST">
+    <div>
+      <label>Airplane Type</label>
+      <select name="airplane_id">
+        {{#each airplanes}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div>
+      <label>Seating Type</label>
+      <select name="seating_type_id">
+        {{#each seatingtypes}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+     <div>
+      <label>Seat Numbers</label>
+      <select name="number_of_seats">
+        {{#each seatnumbers}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+
+    <input type="submit" />
+  </form>
+</div>

@@ -1,0 +1,15 @@
+<h1>Add Seating</h1>
+<div>
+  <form method="POST">
+    <div>
+      <label>Type</label>
+      <select name="name">
+        {{#each typename}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <input type="submit" />
+  </form>
+</div>

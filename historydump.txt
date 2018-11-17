@@ -1,0 +1,83 @@
+    1  sudo apt-get update
+    2  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+    3  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+    4  sudo apt-get update
+    5  sudo apt-get install sublime-text
+    6  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+    7  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+    8  sudo apt-get install sublime-text
+    9  sudo apt-get install mysql-server
+   10  mysql_secure_installation
+   11  sudo apt-get update
+   12  mysql_secure_installation
+   13  sudo -i. passwd.
+   14  sudo -i. passwd
+   15  sudo -i
+   16  sudo apt-get update
+   17  sudo apt-get install mysql-server
+   18  mysql_secure_installation
+   19  sudo -i
+   20  mysql_secure_installation\
+   21  npm start
+   22  sudo apt install npmn
+   23  mysql -u root
+   24  cd /var/run/
+   25  sudo mkdir mysqld
+   26  mysql -u root
+   27  sudo mysql -u root
+   28  mysql_secure_installation
+   29  mysql -u -root -p
+   30  sudo dpkg-reconfigure mysql-server-5.x
+   31  mysql_secure_installation
+   32  mysql -u root -p
+   33  mysqladmin
+   34  mysql -u root -p
+   35  vim /etc/mysql/mysql.cnf 
+   36  gedit /etc/mysql/mysql.cnf 
+   37  gedit /etc/mysql/conf.d/mysql.cnf 
+   38  gedit /etc/mysql/mysql.conf.d/mysqld.cnf 
+   39  sudo service mysqld stop
+   40  /etc/init.d/mysql stop
+   41  mysqld_safe --skip-grant-tables &
+   42  sudo mysqld_safe --skip-grant-tables &
+   43  sudo mysqld_safe --skip-grant-tables&
+   44  sudo mysqld_safe --skip-grant-tables
+   45  sudo mysqld_safe --skip-grant-tables --skip-networking &
+   46  sudo apt-get purge mysql
+   47  sudo apt-get remove mysql
+   48  sudo apt-get remove mysql-server
+   49  /etc/init.d/mysql start
+   50  sudo mysql_secure_installation
+   51  mysql -u root -p
+   52  sudo service mysql stop
+   53  sudo service mysql start
+   54  mysql -u root -p
+   55  mysql --version
+   56  mysql_install_db
+   57  mysqld --initialize
+   58  sudo mysqld --initialize
+   59  sudo mysql
+   60  mysql
+   61  sudo mysql
+   62  mysql -u zainab -p
+   63  sudo apt-get install apache2 php
+   64  apt-get install phpmyadmin
+   65  sudo apt-get install phpmyadmin
+   66  sudo apt-get remove phpmyadmin
+   67  sudo apt-get install phpmyadmin
+   68  sudo apt-get remove apache2 php
+   69  sudo apt-get install apache2 php
+   70  sudo apt-get remove phpmyadmin apache12
+   71  sudo apt-get remove phpmyadmin apache2
+   72  apt-get install apache2 phpmyadmin
+   73  sudo apt-get install apache2 phpmyadmin
+   74  sudo apt purge phpmyadmin
+   75  sudo apt-get install phpmyadmin
+   76  sudo service apache2 restarrt
+   77  sudo service apache2 restarr
+   78  sudo service apache2 restart
+   79  sudo apt install npm
+   80  npm install
+   81  npm start
+   82  history
+   83  history > historydump.txt

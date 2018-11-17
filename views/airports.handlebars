@@ -1,0 +1,31 @@
+<h1>Airports</h1>
+<div>
+  <div class="table-header">
+    <div>id</div>
+    <div>Airport Name</div>
+    <div>City</div>
+    <div>Country</div>
+  </div>
+  <div>
+    {{#each data}}
+      <div class="table-row">
+        <div>{{this.id}}</div>
+        <div>{{this.name}}</div>
+        <div>{{this.city}}</div>
+        <div>{{this.country}}</div>
+        <div>
+            <form method="post" action="/locations/delete">
+                <input type="submit" value="delete" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+        <div>
+            <form method="get" action="/locations/update">
+                <input type="submit" value="update" />
+                <input type="hidden" name="id" value="{{this.id}}" />
+            </form>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

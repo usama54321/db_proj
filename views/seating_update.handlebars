@@ -1,0 +1,16 @@
+<h1>Update Seating</h1>
+<div>
+  <form method="POST">
+    <div>
+      <label>Seating Type</label>
+      <select name="seating_type_id">
+        {{#each seatingtypes}}
+          <option value="{{this.id }}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <input type="hidden" value={{id}} name="id" />
+    <input type="submit" />
+  </form>
+</div>
