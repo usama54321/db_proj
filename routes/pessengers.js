@@ -19,12 +19,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/add', (req, res, next) => {
-    res.render("persons_add", {})
+    res.render("pessengers_add", {})
 });
 
 
 router.post('/add', (req, res, next) => { 
-    connection.query("INSERT INTO person (cnic, age, first_name, last_name, phone_number, miles, passport_number, address_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [req.body.cnic, req.body.age, req.body.first_name, req.body.last_name, req.body.phone_number, req.body.miles, req.body.passport_number, req.body.address_id], (err, results, fields) => {
+    connection.query("INSERT INTO pessenger (discount, cnic) VALUES (?, ?)", [req.body.discount, req.body.cnic], (err, results, fields) => {
         if(!err)
             err = "Added succesfully"
         res.render("error", {errors: err})
@@ -33,12 +33,12 @@ router.post('/add', (req, res, next) => {
 
 
 router.post('/delete', (req, res, next) => {
-    if(!req.body || !req.body.cnic) {
+    if(!req.body || !req.body.id) {
         res.render("error", {errors: "No id provided"})
         return;
     }
 
-    connection.query("DELETE FROM person WHERE cnic = ?", [req.body.cnic], (err, results, fields) => {
+    connection.query("DELETE FROM pessenger WHERE id = ?", [req.body.id], (err, results, fields) => {
         if(!err)
             err = "Deleted successfully"
         res.render("error", {errors: err})
@@ -46,28 +46,25 @@ router.post('/delete', (req, res, next) => {
 })
 
 router.get('/update', (req, res, next) => {
-    if(!req.query.cnic) {
-        res.render("error", {errors: "cnic is required"})
+    if(!req.query.id) {
+        res.render("error", {errors: "id is required"})
         return;
     }
 
-    getPersons(req.query.cnic, (err, data, fields) => {
+    getPessengers(req.query.id , (err, data, fields) => {
         if(err || !data || !data.length) {
             if(!err)
-                err = "Person not found"
+                err = "Pessenger not found"
             res.render("error", {errors: err})
             return
         }
 
-        res.render("persons_update", {data: data[0]})
+        res.render("pessengers_update", {data: data[0]})
     })
-
-
-    //connection.query("SELECT *
 })
 
 router.post('/update', (req, res, next) => {
-    connection.query("UPDATE person SET first_name=?, last_name=?, age=?, cnic=?, phone_number=?, miles=?, passport_number=?, address_id=? WHERE cnic = ?", [req.body.first_name, req.body.last_name, req.body.age, req.body.cnic, req.body.phone_number, req.body.miles, req.body.passport_number, req.body.address_id, req.body.old_cnic], (err, fields, data) => {
+    connection.query("UPDATE pessenger SET cnic=?, discount=? WHERE id = ?", [req.body.cnic, req.body.discount, req.body.id], (err, fields, data) => {
         if(!err)
             err = "Updated successfully"
         res.render("error", {errors: err})

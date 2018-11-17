@@ -3,19 +3,18 @@ var router = express.Router();
 const connection = require('../db');
 
 /* GET home page. */
-const getPessengers = (id, cb) => {
-    let query = "SELECT person.age, person.first_name, person.last_name, person.cnic, person.phone_number, person.miles, person.passport_number, person.address_id, pessenger.id, pessenger.discount FROM `person` INNER JOIN pessenger ON person.cnic = pessenger.cnic"
+const getEmployees = (id, cb) => {
+    let query = "SELECT person.age, person.first_name, person.last_name, person.cnic, person.phone_number, person.miles, person.passport_number, person.address_id, employee.id, employee.joining_year employee.dept_no, employee.grade, employee.cnic FROM `employee` INNER JOIN employee ON person.cnic = employee.cnic"
 
     if(id)
-        query += " WHERE pessenger.id = " + id.toString()
+        query += " WHERE employee.id = " + id.toString()
     connection.query(query, cb)
 }
 
 
 router.get('/', function(req, res, next) {
-    getPessengers(null, (err, results, fields) => {
-        console.log(err)
-        res.render("pessengers", {data: results})
+    getEmployees(null, (err, results, fields) => {
+        res.render("employees", {data: results})
     })
 });
 
