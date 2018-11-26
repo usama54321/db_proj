@@ -21,6 +21,7 @@ var seatingtype = require('./routes/seatingtype');
 var pricing = require('./routes/pricing');
 var airplane = require('./routes/airplane');
 var ticketing = require('./routes/ticketing');
+var queries = require('./routes/queries');
 
 var app = express();
 var hbs = exphbs.create({
@@ -55,6 +56,7 @@ app.use('/seatingtype', seatingtype)
 app.use('/pricing', pricing)
 app.use('/airplane', airplane)
 app.use('/ticketing', ticketing)
+app.use('/queries', queries)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
