@@ -16,6 +16,11 @@ var pessengers = require('./routes/pessengers')
 var employees = require('./routes/employees')
 var addresses = require('./routes/addresses')
 var manufacturer_names = require('./routes/manufacturer_names')
+var seating = require('./routes/seating');
+var seatingtype = require('./routes/seatingtype');
+var pricing = require('./routes/pricing');
+var airplane = require('./routes/airplane');
+var ticketing = require('./routes/ticketing');
 
 var app = express();
 var hbs = exphbs.create({
